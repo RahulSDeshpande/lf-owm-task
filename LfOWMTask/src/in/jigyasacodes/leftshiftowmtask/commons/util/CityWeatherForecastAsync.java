@@ -14,11 +14,13 @@ import org.json.JSONObject;
 import android.os.AsyncTask;
 import android.util.Log;
 
-public class CityWeatherForecastAsync extends AsyncTask<String, Void, JSONObject> {
+public class CityWeatherForecastAsync extends
+		AsyncTask<String, Void, JSONObject> {
 
 	OnCityWeatherForecastRESTCompleteListener onCityWeatherForecastRESTCompleteListener;
 
-	public CityWeatherForecastAsync(OnCityWeatherForecastRESTCompleteListener thiss) {
+	public CityWeatherForecastAsync(
+			OnCityWeatherForecastRESTCompleteListener thiss) {
 
 		onCityWeatherForecastRESTCompleteListener = thiss;
 	}
@@ -47,7 +49,8 @@ public class CityWeatherForecastAsync extends AsyncTask<String, Void, JSONObject
 
 		try {
 
-			onCityWeatherForecastRESTCompleteListener.onCityWeatherForecastRESTComplete(jsonResp);
+			onCityWeatherForecastRESTCompleteListener
+					.onCityWeatherForecastRESTComplete(jsonResp);
 
 		} catch (JSONException e) {
 
@@ -56,6 +59,8 @@ public class CityWeatherForecastAsync extends AsyncTask<String, Void, JSONObject
 	}
 
 	private JSONObject get(String url) {
+
+		// USING FOLLOWING CODE CONCEPT, SAVES MEMORY & TIME - RSD
 
 		// InputStream isResponse = null;
 		String strResp = null;
@@ -104,6 +109,7 @@ public class CityWeatherForecastAsync extends AsyncTask<String, Void, JSONObject
 
 	public interface OnCityWeatherForecastRESTCompleteListener {
 
-		public void onCityWeatherForecastRESTComplete(JSONObject jsonObj) throws JSONException;
+		public void onCityWeatherForecastRESTComplete(final JSONObject jsonObj)
+				throws JSONException;
 	}
 }

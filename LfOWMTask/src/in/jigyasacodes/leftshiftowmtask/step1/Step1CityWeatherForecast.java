@@ -90,10 +90,12 @@ public class Step1CityWeatherForecast extends FragmentActivity implements
 	}
 
 	@Override
-	public void onCityWeatherForecastRESTComplete(JSONObject jsonObj)
+	public void onCityWeatherForecastRESTComplete(final JSONObject jsonObj)
 			throws JSONException {
 
+		// //////////////////////////////////
 		setupAndSetViewPagerAdapter(jsonObj);
+		// //////////////////////////////////
 	}
 
 	private void setupAndSetViewPagerAdapter(final JSONObject jsonObj) {

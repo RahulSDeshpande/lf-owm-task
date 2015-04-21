@@ -134,7 +134,8 @@ public class Step2GPSLocationWeatherAct extends FragmentActivity implements
 		}
 	}
 
-	protected void showGPSRetryAlertDialog(String strTitle, String strMessage) {
+	protected void showGPSRetryAlertDialog(final String strTitle,
+			final String strMessage) {
 
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
@@ -355,6 +356,7 @@ public class Step2GPSLocationWeatherAct extends FragmentActivity implements
 		}
 	}
 
+	// Just in case if we need to call it directly by CITY NAME (String)
 	private void fetchWeatherForecast(final String strCityName) {
 
 		// //////////////////// IMP //////////////////////////////
@@ -425,8 +427,15 @@ public class Step2GPSLocationWeatherAct extends FragmentActivity implements
 	}
 
 	@Override
-	public void onCityWeatherForecastRESTComplete(JSONObject jsonObj)
+	public void onCityWeatherForecastRESTComplete(final JSONObject jsonObj)
 			throws JSONException {
+
+		// //////////////////////////////////
+		setupAndSetViewPagerAdapter(jsonObj);
+		// //////////////////////////////////
+	}
+
+	private void setupAndSetViewPagerAdapter(JSONObject jsonObj) {
 
 		WeatherForecastAdapHelper weatherForecastAdapHelper = new WeatherForecastAdapHelper();
 
@@ -453,6 +462,7 @@ public class Step2GPSLocationWeatherAct extends FragmentActivity implements
 				weatherForecastAdapHelper);
 
 		viewPager.setAdapter(adapter);
+
 	}
 
 }
