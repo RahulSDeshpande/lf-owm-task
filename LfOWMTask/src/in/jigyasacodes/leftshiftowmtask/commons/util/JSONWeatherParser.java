@@ -14,11 +14,12 @@
  * limitations under the License.
  */
 
-package in.jigyasacodes.leftshiftowmtask.step2.trial.util;
+package in.jigyasacodes.leftshiftowmtask.commons.util;
 
-import in.jigyasacodes.leftshiftowmtask.step2.trial.adapter.WeatherForecastAdapHelper;
-import in.jigyasacodes.leftshiftowmtask.step2.trial.data.DayForecast;
-import in.jigyasacodes.leftshiftowmtask.step2.trial.data.Weather;
+import in.jigyasacodes.leftshiftowmtask.commons.adapter.WeatherForecastAdapHelper;
+import in.jigyasacodes.leftshiftowmtask.commons.data.DayForecast;
+import in.jigyasacodes.leftshiftowmtask.commons.data.Weather;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;

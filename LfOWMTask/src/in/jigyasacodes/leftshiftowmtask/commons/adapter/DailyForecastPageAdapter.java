@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 
-package in.jigyasacodes.leftshiftowmtask.step2.trial.adapter;
+package in.jigyasacodes.leftshiftowmtask.commons.adapter;
 
-import in.jigyasacodes.leftshiftowmtask.step2.trial.data.DayForecast;
-import in.jigyasacodes.leftshiftowmtask.step2.trial.frag.DailyForecastFragment;
+import in.jigyasacodes.leftshiftowmtask.commons.data.DayForecast;
+import in.jigyasacodes.leftshiftowmtask.commons.frag.DailyForecastFragment;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;

@@ -4,9 +4,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import in.jigyasacodes.leftshiftowmtask.R;
-import in.jigyasacodes.leftshiftowmtask.step1.utils.CityWeatherForecastAsync;
-import in.jigyasacodes.leftshiftowmtask.step1.utils.CityWeatherForecastAsync.OnCityWeatherForecastRESTCompleteListener;
-import in.jigyasacodes.leftshiftowmtask.step1.utils.Constants;
+import in.jigyasacodes.leftshiftowmtask.commons.util.CityWeatherForecastAsync;
+import in.jigyasacodes.leftshiftowmtask.commons.util.CityWeatherForecastAsync.OnCityWeatherForecastRESTCompleteListener;
+import in.jigyasacodes.leftshiftowmtask.commons.util.Constants;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;

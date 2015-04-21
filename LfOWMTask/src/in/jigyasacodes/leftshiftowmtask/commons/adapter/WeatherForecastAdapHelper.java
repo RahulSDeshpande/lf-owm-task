@@ -14,32 +14,28 @@
  * limitations under the License.
  */
 
-package in.jigyasacodes.leftshiftowmtask.step2.trial.data;
+package in.jigyasacodes.leftshiftowmtask.commons.adapter;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
+
+import in.jigyasacodes.leftshiftowmtask.commons.data.DayForecast;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Francesco
- *
+ * 
  */
-public class DayForecast {
+public class WeatherForecastAdapHelper {
 
-	private static SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-	public Weather weather = new Weather();
-	public ForecastTemp forecastTemp = new ForecastTemp();
-	public long timestamp;
-	
-	public class ForecastTemp {
-		public float day;
-		public float min;
-		public float max;
-		public float night;
-		public float eve;
-		public float morning;
+	private List<DayForecast> daysForecast = new ArrayList<DayForecast>();
+
+	public void addForecast(DayForecast forecast) {
+		daysForecast.add(forecast);
+		System.out.println("Add forecast [" + forecast + "]");
 	}
-	
-	public String getStringDate() {
-		return sdf.format(new Date(timestamp));
+
+	public DayForecast getdForecast(int dayNum) {
+		return daysForecast.get(dayNum);
 	}
 }

@@ -1,16 +1,12 @@
-package in.jigyasacodes.leftshiftowmtask.step2.trial.frag;
+package in.jigyasacodes.leftshiftowmtask.commons.frag;
 
 import in.jigyasacodes.leftshiftowmtask.R;
-import in.jigyasacodes.leftshiftowmtask.step2.trial.data.DayForecast;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.AsyncTask;
+import in.jigyasacodes.leftshiftowmtask.commons.data.DayForecast;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 /**

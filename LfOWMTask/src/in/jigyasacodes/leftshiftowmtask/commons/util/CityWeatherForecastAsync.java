@@ -1,4 +1,4 @@
-package in.jigyasacodes.leftshiftowmtask.step1.utils;
+package in.jigyasacodes.leftshiftowmtask.commons.util;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;

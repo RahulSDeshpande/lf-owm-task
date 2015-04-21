@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-package in.jigyasacodes.leftshiftowmtask.step2.trial.data;
+package in.jigyasacodes.leftshiftowmtask.commons.data;
 
 /**
  * @author Francesco
  * 
  */
-public class Weather {
+public class Metadata {
 
 	//public Location location;
 	public Condition currentCondition = new Condition();

@@ -1,38 +1,47 @@
 package in.jigyasacodes.leftshiftowmtask;
 
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Locale;
-
+import in.jigyasacodes.leftshiftowmtask.step1.Step1MainAct;
+import in.jigyasacodes.leftshiftowmtask.step2.Step2MainAct;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.widget.Toast;
+import android.view.View;
+import android.widget.Button;
 
 public class LfOWMMainAct extends Activity {
 
+	Button btnStep1, btnStep2;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+
 		super.onCreate(savedInstanceState);
+
 		setContentView(R.layout.dynamic_listview);
 
-		Date d = new Date(1428649200);
-		Calendar c = Calendar.getInstance();
-		c.add(Calendar.DATE, 21);
-		c.setTimeInMillis(1428649200L * 1000);
-		// c.getDisplayName(Calendar.MONTH,Calendar.SHORT, Locale.US);
+		btnStep1 = (Button) findViewById(R.id.btnStep1);
+		btnStep2 = (Button) findViewById(R.id.btnStep2);
 
-		Toast.makeText(this,
-				c.get(Calendar.DATE) + "\n" + (c.get(Calendar.MONTH) + 1),
-				Toast.LENGTH_LONG).show();
-
-		// SimpleDateFormat sdf =new SimpleDateFormat();
+		/*
+		 * Date d = new Date(1428649200); Calendar c = Calendar.getInstance();
+		 * c.add(Calendar.DATE, 21); c.setTimeInMillis(1428649200L * 1000); //
+		 * c.getDisplayName(Calendar.MONTH,Calendar.SHORT, Locale.US);
+		 * 
+		 * Toast.makeText(this, c.get(Calendar.DATE) + "\n" +
+		 * (c.get(Calendar.MONTH) + 1), Toast.LENGTH_LONG).show();
+		 * 
+		 * // SimpleDateFormat sdf =new SimpleDateFormat();
+		 */
 	}
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
+	public void onStep1Click(View view) {
 
-		getMenuInflater().inflate(R.menu.main, menu);
-		return true;
+		startActivity(new Intent(LfOWMMainAct.this, Step1MainAct.class));
+
+	}
+
+	public void onStep2Click(View view) {
+
+		startActivity(new Intent(LfOWMMainAct.this, Step2MainAct.class));
 	}
 }
