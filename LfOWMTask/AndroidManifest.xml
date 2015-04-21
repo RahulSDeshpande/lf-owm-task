@@ -19,7 +19,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="in.jigyasacodes.leftshiftowmtask.step1.Step1CityNamesDynamicListViewAct"
+            android:name="in.jigyasacodes.leftshiftowmtask.LfOWMMainAct"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,7 +27,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="in.jigyasacodes.leftshiftowmtask.step1.Step1CityNamesDynamicListViewAct" >
+        </activity>
         <activity android:name="in.jigyasacodes.leftshiftowmtask.step1.Step1CityWeatherForecast" >
+        </activity>
+        <activity android:name="in.jigyasacodes.leftshiftowmtask.step2.trial.Step2GPSLocationWeatherAct" >
         </activity>
     </application>
 

@@ -1,7 +1,9 @@
 package in.jigyasacodes.leftshiftowmtask;
 
+import in.jigyasacodes.leftshiftowmtask.step1.Step1CityNamesDynamicListViewAct;
 import in.jigyasacodes.leftshiftowmtask.step1.Step1MainAct;
 import in.jigyasacodes.leftshiftowmtask.step2.Step2MainAct;
+import in.jigyasacodes.leftshiftowmtask.step2.trial.Step2GPSLocationWeatherAct;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -36,12 +38,14 @@ public class LfOWMMainAct extends Activity {
 
 	public void onStep1Click(View view) {
 
-		startActivity(new Intent(LfOWMMainAct.this, Step1MainAct.class));
+		startActivity(new Intent(LfOWMMainAct.this,
+				Step1CityNamesDynamicListViewAct.class));
 
 	}
 
 	public void onStep2Click(View view) {
 
-		startActivity(new Intent(LfOWMMainAct.this, Step2MainAct.class));
+		startActivity(new Intent(LfOWMMainAct.this,
+				Step2GPSLocationWeatherAct.class));
 	}
 }
