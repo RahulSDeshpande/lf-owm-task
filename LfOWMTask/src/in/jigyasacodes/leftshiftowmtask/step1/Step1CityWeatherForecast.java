@@ -13,7 +13,7 @@ import android.os.Bundle;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class CityWeatherForecast extends Activity implements
+public class Step1CityWeatherForecast extends Activity implements
 		OnCityWeatherForecastRESTCompleteListener {
 
 	private String strCityName = null;
@@ -22,7 +22,7 @@ public class CityWeatherForecast extends Activity implements
 
 	CityWeatherForecastAsync cityWeatherForecastAsync;
 
-	public CityWeatherForecast() {
+	public Step1CityWeatherForecast() {
 
 	}
 

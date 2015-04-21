@@ -17,7 +17,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class DynamicListView extends Activity {
+public class Step1DynamicListView extends Activity {
 
 	private Button btnAddCity;
 	private EditText etCityName;
@@ -67,8 +67,8 @@ public class DynamicListView extends Activity {
 								+ ((TextView) view).getText().toString(),
 						Toast.LENGTH_SHORT).show();
 
-				Intent i = new Intent(DynamicListView.this,
-						CityWeatherForecast.class);
+				Intent i = new Intent(Step1DynamicListView.this,
+						Step1CityWeatherForecast.class);
 				i.putExtra("city_name", arrAdapStr.getItem(position));
 				startActivity(i);
 
