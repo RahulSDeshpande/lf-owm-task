@@ -74,7 +74,7 @@ public class Step1CityWeatherForecast extends FragmentActivity implements
 	private void setupOWMURLAndCall() {
 
 		final String OWM_FORECAST_REST_URL = Constants.OWM_BASE_URL
-				+ Constants.OWM_FORECAST_URL
+				+ Constants.OWM_FORECAST_URL + "/"
 				+ Constants.OWM_FORECAST_DAILY_daily_URL
 				+ Constants.OWM_CITY_q_URL + strCityName + "&"
 				+ Constants.OWM_DAYS_cnt_URL + OWM_WEATHER_FORECAST_CNT_cnt
@@ -107,7 +107,6 @@ public class Step1CityWeatherForecast extends FragmentActivity implements
 
 			weatherForecastAdapHelper = JSONWeatherParser
 					.getWeatherForecast(jsonObj);
-			System.out.println("Weather [" + weatherForecastAdapHelper + "]"); // ////////
 
 		} catch (JSONException e) {
 

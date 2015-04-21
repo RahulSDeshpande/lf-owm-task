@@ -443,7 +443,6 @@ public class Step2GPSLocationWeatherAct extends FragmentActivity implements
 
 			weatherForecastAdapHelper = JSONWeatherParser
 					.getWeatherForecast(jsonObj);
-			System.out.println("Weather [" + weatherForecastAdapHelper + "]"); // ////////
 
 		} catch (JSONException e) {
 
