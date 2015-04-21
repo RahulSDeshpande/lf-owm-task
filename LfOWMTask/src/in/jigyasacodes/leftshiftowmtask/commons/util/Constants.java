@@ -21,7 +21,7 @@ public class Constants {
 	public static final String OWM_LONGITUDE_lon_URL = "lon=";
 
 	public static final String OWM_DAYS_cnt_URL = "cnt=";
+	public static int OWM_DAYS_cnt_VALUE_16_URL = 16;
 
 	public static final String OWM_RESPONSE_MODE_mode_URL = "mode=";
-
 }

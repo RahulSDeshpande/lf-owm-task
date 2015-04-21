@@ -55,7 +55,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="top"
-            android:background="@android:color/holo_green_light"
+            android:background="@android:color/darker_gray"
             android:paddingBottom="8dp"
             android:paddingTop="8dp"
             android:textColor="#fff" />

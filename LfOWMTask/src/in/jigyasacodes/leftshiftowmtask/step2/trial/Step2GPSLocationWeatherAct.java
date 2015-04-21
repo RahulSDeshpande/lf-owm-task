@@ -56,7 +56,7 @@ public class Step2GPSLocationWeatherAct extends FragmentActivity implements
 
 		super.onCreate(savedInstanceState);
 
-		setContentView(R.layout.gps_location_weather_layout);
+		setContentView(R.layout.gps_location_weather_common_layout);
 
 		/*
 		 * Geocoder geocoder = new Geocoder(getApplicationContext(),
@@ -84,12 +84,13 @@ public class Step2GPSLocationWeatherAct extends FragmentActivity implements
 
 				pbloading.setVisibility(View.VISIBLE);
 
-				getGPSLocation = new Step2GetGPSLocation(Step2GPSLocationWeatherAct.this,
+				getGPSLocation = new Step2GetGPSLocation(
+						Step2GPSLocationWeatherAct.this,
 						Step2GPSLocationWeatherAct.this);
 
 				// ///////////////////////////////////////////////////////////
-				getGPSLocation.setupGPSVarsAndCall(Step2GPSLocationWeatherAct.this,
-						getBaseContext());
+				getGPSLocation.setupGPSVarsAndCall(
+						Step2GPSLocationWeatherAct.this, getBaseContext());
 				// ///////////////////////////////////////////////////////////
 
 				/*
