@@ -1,0 +1,34 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:orientation="vertical" >
+
+        <Button
+            android:id="@+id/btnStep1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="\nStep I\n\nMultiple Cities' Weather Forecast\n" />
+
+        <Button
+            android:id="@+id/btnStep2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="\nStep II\n\nGPS Current City' Weather Forecast\n" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:autoLink="all"
+            android:hint="@string/about_me"
+            android:linksClickable="true" />
+    </LinearLayout>
+
+</ScrollView>
