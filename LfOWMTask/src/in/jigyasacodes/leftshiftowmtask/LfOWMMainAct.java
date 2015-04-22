@@ -1,8 +1,6 @@
 package in.jigyasacodes.leftshiftowmtask;
 
 import in.jigyasacodes.leftshiftowmtask.step1.Step1CityNamesDynamicListViewAct;
-import in.jigyasacodes.leftshiftowmtask.step1.Step1MainAct;
-import in.jigyasacodes.leftshiftowmtask.step2.Step2MainAct;
 import in.jigyasacodes.leftshiftowmtask.step2.trial.Step2GPSLocationWeatherAct;
 import android.app.Activity;
 import android.content.Intent;
@@ -19,7 +17,7 @@ public class LfOWMMainAct extends Activity {
 
 		super.onCreate(savedInstanceState);
 
-		setContentView(R.layout.dynamic_listview);
+		setContentView(R.layout.main_layout);
 
 		btnStep1 = (Button) findViewById(R.id.btnStep1);
 		btnStep2 = (Button) findViewById(R.id.btnStep2);
