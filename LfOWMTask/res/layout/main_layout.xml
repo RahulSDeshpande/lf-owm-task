@@ -14,13 +14,15 @@
             android:id="@+id/btnStep1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="\nStep I\n\nMultiple Cities' Weather Forecast\n" />
+            android:onClick="onStep1Click"
+            android:text="\nStep I\n\nMultiple Cities&apos; Weather Forecast\n" />
 
         <Button
             android:id="@+id/btnStep2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="\nStep II\n\nGPS Current City' Weather Forecast\n" />
+            android:onClick="onStep2Click"
+            android:text="\nStep II\n\nGPS Current City&apos; Weather Forecast\n" />
 
         <TextView
             android:layout_width="match_parent"
