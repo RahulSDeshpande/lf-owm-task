@@ -1,4 +1,4 @@
-package in.jigyasacodes.leftshiftowmtask.commons.util;
+package in.jigyasacodes.leftshiftowmtask.commons.utils;
 
 public class Constants {
 

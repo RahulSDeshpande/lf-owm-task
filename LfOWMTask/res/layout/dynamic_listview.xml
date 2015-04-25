@@ -16,7 +16,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="7"
-            android:focusable="false"
+            android:focusable="true"
             android:hint="Search Weather Forecast by City name"
             android:singleLine="true"
             android:text="Pune" />
@@ -34,7 +34,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:animateLayoutChanges="true"
-        android:listSelector="@android:color/holo_red_light"
         android:stackFromBottom="false"
         android:transcriptMode="alwaysScroll" />
 

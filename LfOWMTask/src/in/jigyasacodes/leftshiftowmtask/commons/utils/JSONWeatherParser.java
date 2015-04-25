@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package in.jigyasacodes.leftshiftowmtask.commons.util;
+package in.jigyasacodes.leftshiftowmtask.commons.utils;
 
 import in.jigyasacodes.leftshiftowmtask.commons.adapter.WeatherForecastAdapHelper;
 import in.jigyasacodes.leftshiftowmtask.commons.data.DayForecast;
@@ -81,6 +81,7 @@ public class JSONWeatherParser {
 
 		return weather;
 	}
+	
 
 	public static WeatherForecastAdapHelper getWeatherForecast(JSONObject jObj)
 			throws JSONException {
@@ -136,6 +137,7 @@ public class JSONWeatherParser {
 		return weatherForecastAdapHelper;
 	}
 
+	
 	private static JSONObject getJSONObject(String tagName, JSONObject jObj)
 			throws JSONException {
 

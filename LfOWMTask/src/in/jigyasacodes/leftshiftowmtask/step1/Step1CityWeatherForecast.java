@@ -3,10 +3,10 @@ package in.jigyasacodes.leftshiftowmtask.step1;
 import in.jigyasacodes.leftshiftowmtask.R;
 import in.jigyasacodes.leftshiftowmtask.commons.adapter.DailyForecastPageAdapter;
 import in.jigyasacodes.leftshiftowmtask.commons.adapter.WeatherForecastAdapHelper;
-import in.jigyasacodes.leftshiftowmtask.commons.util.CityWeatherForecastAsync;
-import in.jigyasacodes.leftshiftowmtask.commons.util.JSONWeatherParser;
-import in.jigyasacodes.leftshiftowmtask.commons.util.CityWeatherForecastAsync.OnCityWeatherForecastRESTCompleteListener;
-import in.jigyasacodes.leftshiftowmtask.commons.util.Constants;
+import in.jigyasacodes.leftshiftowmtask.commons.utils.CityWeatherForecastAsync;
+import in.jigyasacodes.leftshiftowmtask.commons.utils.Constants;
+import in.jigyasacodes.leftshiftowmtask.commons.utils.JSONWeatherParser;
+import in.jigyasacodes.leftshiftowmtask.commons.utils.CityWeatherForecastAsync.OnCityWeatherForecastRESTCompleteListener;
 
 import org.json.JSONException;
 import org.json.JSONObject;
