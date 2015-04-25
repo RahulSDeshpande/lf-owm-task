@@ -27,6 +27,7 @@ public class Step1CityNamesDynamicListViewAct extends Activity {
 	private ListView lv;
 	// private String[] strArrCityNames;
 	private ArrayAdapter<String> arrAdapStr;
+	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
