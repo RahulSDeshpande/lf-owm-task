@@ -136,6 +136,7 @@ public class JSONWeatherParser {
 		return weatherForecastAdapHelper;
 	}
 
+	
 	private static JSONObject getJSONObject(String tagName, JSONObject jObj)
 			throws JSONException {
 
