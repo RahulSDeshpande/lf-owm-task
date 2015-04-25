@@ -21,12 +21,14 @@ public class Step1CityNamesDynamicListViewAct extends Activity {
 
 	private Button btnAddCity;
 	private EditText etCityName;
+	
 
 	List<String> l;
 	// ArrayList<String> arrLCityNames;
 	private ListView lv;
 	// private String[] strArrCityNames;
 	private ArrayAdapter<String> arrAdapStr;
+	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
