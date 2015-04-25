@@ -8,7 +8,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class JSONWeatherParser {
+public class JSONHelper {
 
 	public static Weather getWeather(String data) throws JSONException {
 

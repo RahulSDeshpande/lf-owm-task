@@ -9,10 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-/**
- * @author Francesco
- * 
- */
 public class DailyForecastFragment extends Fragment {
 
 	TextView tvTempDay, tvTempMin, tvTempMax, tvTempMorn, tvTempEven,
