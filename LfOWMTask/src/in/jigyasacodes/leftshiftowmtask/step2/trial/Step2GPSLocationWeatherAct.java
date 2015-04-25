@@ -97,8 +97,9 @@ public class Step2GPSLocationWeatherAct extends FragmentActivity implements
 						Step2GPSLocationWeatherAct.this);
 
 				// ///////////////////////////////////////////////////////////
-				getGPSLocation.setupGPSVarsAndCall(
-						Step2GPSLocationWeatherAct.this, getBaseContext());
+				getGPSLocation
+						.setupGPSVarsAndCall(Step2GPSLocationWeatherAct.this);// ,
+																				// getBaseContext());
 				// ///////////////////////////////////////////////////////////
 
 				/*
@@ -190,9 +191,9 @@ public class Step2GPSLocationWeatherAct extends FragmentActivity implements
 							public void onClick(DialogInterface dialog, int id) {
 
 								// ////////////////////////////////
-								getGPSLocation.setupGPSVarsAndCall(
-										Step2GPSLocationWeatherAct.this,
-										getBaseContext());
+								getGPSLocation
+										.setupGPSVarsAndCall(Step2GPSLocationWeatherAct.this);
+								// getBaseContext());
 								// ////////////////////////////////
 								dialog.cancel();
 							}
