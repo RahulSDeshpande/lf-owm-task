@@ -17,7 +17,7 @@
 package in.jigyasacodes.leftshiftowmtask.commons.adapter;
 
 import in.jigyasacodes.leftshiftowmtask.commons.data.DayForecast;
-import in.jigyasacodes.leftshiftowmtask.commons.frag.DailyForecastFragment;
+import in.jigyasacodes.leftshiftowmtask.commons.frags.DailyForecastFragment;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;

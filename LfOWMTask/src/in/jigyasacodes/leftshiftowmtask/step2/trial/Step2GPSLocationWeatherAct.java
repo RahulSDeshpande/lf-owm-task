@@ -3,10 +3,10 @@ package in.jigyasacodes.leftshiftowmtask.step2.trial;
 import in.jigyasacodes.leftshiftowmtask.R;
 import in.jigyasacodes.leftshiftowmtask.commons.adapter.DailyForecastPageAdapter;
 import in.jigyasacodes.leftshiftowmtask.commons.adapter.WeatherForecastAdapHelper;
-import in.jigyasacodes.leftshiftowmtask.commons.util.CityWeatherForecastAsync;
-import in.jigyasacodes.leftshiftowmtask.commons.util.CityWeatherForecastAsync.OnCityWeatherForecastRESTCompleteListener;
-import in.jigyasacodes.leftshiftowmtask.commons.util.Constants;
-import in.jigyasacodes.leftshiftowmtask.commons.util.JSONWeatherParser;
+import in.jigyasacodes.leftshiftowmtask.commons.utils.CityWeatherForecastAsync;
+import in.jigyasacodes.leftshiftowmtask.commons.utils.Constants;
+import in.jigyasacodes.leftshiftowmtask.commons.utils.JSONWeatherParser;
+import in.jigyasacodes.leftshiftowmtask.commons.utils.CityWeatherForecastAsync.OnCityWeatherForecastRESTCompleteListener;
 import in.jigyasacodes.leftshiftowmtask.step2.trial.Step2GetGPSLocation.OnGPSLatLngCompleteListener;
 import in.jigyasacodes.leftshiftowmtask.step2.trial.Step2GetGPSLocation.OnGPSLocationCompleteListener;
 
@@ -19,12 +19,16 @@ import org.json.JSONObject;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Looper;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
@@ -87,7 +91,7 @@ public class Step2GPSLocationWeatherAct extends FragmentActivity implements
 
 				Log.e("btnGetGPSLocation.onClick", "Started.."
 						+ "--------------------------------");
-				
+
 				getGPSLocation = new Step2GetGPSLocation(
 						Step2GPSLocationWeatherAct.this,
 						Step2GPSLocationWeatherAct.this);
@@ -132,10 +136,45 @@ public class Step2GPSLocationWeatherAct extends FragmentActivity implements
 					+ location.getLongitude()
 					+ "--------------------------------");
 
-			// /////////////////////////////////////////
-			new ReverseGeocodeAsync().execute(location);
-			// /////////////////////////////////////////
+			if (isNetworkConnectionAvailable())
+
+			{
+				// /////////////////////////////////////////
+				new ReverseGeocodeAsync().execute(location);
+				// /////////////////////////////////////////
+
+			} else {
+
+			}
 		}
+	}
+
+	private boolean isNetworkConnectionAvailable() {
+
+		boolean haveConnectedWifi = false;
+		boolean haveConnectedMobile = false;
+
+		ConnectivityManager cm = (ConnectivityManager) Step2GPSLocationWeatherAct.this
+				.getSystemService(Context.CONNECTIVITY_SERVICE);
+
+		NetworkInfo[] netInfo = cm.getAllNetworkInfo();
+
+		for (NetworkInfo ni : netInfo) {
+
+			if (ni.getTypeName().equalsIgnoreCase("WIFI"))
+
+				if (ni.isConnected())
+
+					haveConnectedWifi = true;
+
+			if (ni.getTypeName().equalsIgnoreCase("MOBILE"))
+
+				if (ni.isConnected())
+
+					haveConnectedMobile = true;
+		}
+
+		return haveConnectedWifi || haveConnectedMobile;
 	}
 
 	protected void showGPSRetryAlertDialog(final String strTitle,
@@ -207,7 +246,7 @@ public class Step2GPSLocationWeatherAct extends FragmentActivity implements
 			Log.e("ReverseGeocodeAsync",
 					"doInBackground() 1 --------------------------------");
 
-			// Looper.prepare();
+			Looper.prepare();
 
 			List<Address> listAddresses = null;
 
@@ -256,16 +295,23 @@ public class Step2GPSLocationWeatherAct extends FragmentActivity implements
 							Toast.LENGTH_LONG).show();
 				}
 
-			} catch (IOException e) {
+			} catch (IOException ioe) {
 
 				Log.e("ReverseGeocodeAsync",
 						"doInBackground() 6 --------------------------------");
 
-				e.printStackTrace();
+				ioe.printStackTrace();
+
+				// Log.e("ReverseGeocodeAsync",
+				// "--------------------------------"
+				// + ioe.toString());
+
+				Log.e("ReverseGeocodeAsync",
+						"doInBackground() 8 --------------------------------");
 			}
 
 			Log.e("ReverseGeocodeAsync",
-					"doInBackground() 7 --------------------------------");
+					"doInBackground() 9 --------------------------------");
 			return listAddresses;
 		}
 

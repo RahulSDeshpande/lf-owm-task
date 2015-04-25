@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package in.jigyasacodes.leftshiftowmtask.commons.util;
+package in.jigyasacodes.leftshiftowmtask.commons.utils;
 
 import in.jigyasacodes.leftshiftowmtask.commons.adapter.WeatherForecastAdapHelper;
 import in.jigyasacodes.leftshiftowmtask.commons.data.DayForecast;

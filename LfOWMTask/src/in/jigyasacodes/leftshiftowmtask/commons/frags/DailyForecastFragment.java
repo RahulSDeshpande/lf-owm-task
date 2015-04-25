@@ -1,4 +1,4 @@
-package in.jigyasacodes.leftshiftowmtask.commons.frag;
+package in.jigyasacodes.leftshiftowmtask.commons.frags;
 
 import in.jigyasacodes.leftshiftowmtask.R;
 import in.jigyasacodes.leftshiftowmtask.commons.data.DayForecast;
