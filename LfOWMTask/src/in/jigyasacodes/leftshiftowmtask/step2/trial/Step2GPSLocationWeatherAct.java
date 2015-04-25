@@ -17,6 +17,7 @@ import java.util.Locale;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.location.Address;
@@ -84,6 +85,9 @@ public class Step2GPSLocationWeatherAct extends FragmentActivity implements
 
 				pbloading.setVisibility(View.VISIBLE);
 
+				Log.e("btnGetGPSLocation.onClick", "Started.."
+						+ "--------------------------------");
+				
 				getGPSLocation = new Step2GetGPSLocation(
 						Step2GPSLocationWeatherAct.this,
 						Step2GPSLocationWeatherAct.this);
@@ -196,6 +200,7 @@ public class Step2GPSLocationWeatherAct extends FragmentActivity implements
 
 		}
 
+		@SuppressLint("NewApi")
 		@Override
 		protected List<Address> doInBackground(Location... locations) {
 
