@@ -81,6 +81,7 @@ public class JSONWeatherParser {
 
 		return weather;
 	}
+	
 
 	public static WeatherForecastAdapHelper getWeatherForecast(JSONObject jObj)
 			throws JSONException {
