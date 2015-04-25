@@ -18,6 +18,7 @@ public class LfOWMMainAct extends Activity {
 
         super.onCreate(savedInstanceState);
 
+
         setContentView(R.layout.dynamic_listview);
 
         btnStep1 = (Button) findViewById(R.id.btnStep1);
@@ -27,10 +28,10 @@ public class LfOWMMainAct extends Activity {
          * Date d = new Date(1428649200); Calendar c = Calendar.getInstance();
 		 * c.add(Calendar.DATE, 21); c.setTimeInMillis(1428649200L * 1000); //
 		 * c.getDisplayName(Calendar.MONTH,Calendar.SHORT, Locale.US);
-		 * 
+		 *
 		 * Toast.makeText(this, c.get(Calendar.DATE) + "\n" +
 		 * (c.get(Calendar.MONTH) + 1), Toast.LENGTH_LONG).show();
-		 * 
+		 *
 		 * // SimpleDateFormat sdf =new SimpleDateFormat();
 		 */
     }
