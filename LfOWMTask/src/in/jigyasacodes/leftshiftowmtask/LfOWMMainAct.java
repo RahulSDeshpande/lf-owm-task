@@ -1,31 +1,30 @@
 package in.jigyasacodes.leftshiftowmtask;
 
-import in.jigyasacodes.leftshiftowmtask.step1.Step1CityNamesDynamicListViewAct;
-import in.jigyasacodes.leftshiftowmtask.step1.Step1MainAct;
-import in.jigyasacodes.leftshiftowmtask.step2.Step2MainAct;
-import in.jigyasacodes.leftshiftowmtask.step2.trial.Step2GPSLocationWeatherAct;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import in.jigyasacodes.leftshiftowmtask.step1.Step1CityNamesDynamicListViewAct;
+import in.jigyasacodes.leftshiftowmtask.step2.trial.Step2GPSLocationWeatherAct;
+
 public class LfOWMMainAct extends Activity {
 
-	Button btnStep1, btnStep2;
+    Button btnStep1, btnStep2;
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
 
-		super.onCreate(savedInstanceState);
+        super.onCreate(savedInstanceState);
 
-		setContentView(R.layout.dynamic_listview);
+        setContentView(R.layout.dynamic_listview);
 
-		btnStep1 = (Button) findViewById(R.id.btnStep1);
-		btnStep2 = (Button) findViewById(R.id.btnStep2);
+        btnStep1 = (Button) findViewById(R.id.btnStep1);
+        btnStep2 = (Button) findViewById(R.id.btnStep2);
 
 		/*
-		 * Date d = new Date(1428649200); Calendar c = Calendar.getInstance();
+         * Date d = new Date(1428649200); Calendar c = Calendar.getInstance();
 		 * c.add(Calendar.DATE, 21); c.setTimeInMillis(1428649200L * 1000); //
 		 * c.getDisplayName(Calendar.MONTH,Calendar.SHORT, Locale.US);
 		 * 
@@ -34,18 +33,19 @@ public class LfOWMMainAct extends Activity {
 		 * 
 		 * // SimpleDateFormat sdf =new SimpleDateFormat();
 		 */
-	}
+    }
 
-	public void onStep1Click(View view) {
+    public void onStep1Click(View view) {
 
-		startActivity(new Intent(LfOWMMainAct.this,
-				Step1CityNamesDynamicListViewAct.class));
+        startActivity(new Intent(LfOWMMainAct.this,
+                Step1CityNamesDynamicListViewAct.class));
 
-	}
+    }
 
-	public void onStep2Click(View view) {
 
-		startActivity(new Intent(LfOWMMainAct.this,
-				Step2GPSLocationWeatherAct.class));
-	}
+    public void onStep2Click(View view) {
+
+        startActivity(new Intent(LfOWMMainAct.this,
+                Step2GPSLocationWeatherAct.class));
+    }
 }
