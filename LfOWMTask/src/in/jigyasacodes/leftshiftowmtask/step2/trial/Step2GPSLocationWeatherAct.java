@@ -1,13 +1,13 @@
 package in.jigyasacodes.leftshiftowmtask.step2.trial;
 
 import in.jigyasacodes.leftshiftowmtask.R;
-import in.jigyasacodes.leftshiftowmtask.commons.adapter.DailyForecastPageAdapter;
+import in.jigyasacodes.leftshiftowmtask.commons.adapter.WeatherForecastAdapter;
 import in.jigyasacodes.leftshiftowmtask.commons.adapter.WeatherForecastAdapHelper;
 import in.jigyasacodes.leftshiftowmtask.commons.utils.AlertDialogs;
 import in.jigyasacodes.leftshiftowmtask.commons.utils.CheckGPSAndNet;
 import in.jigyasacodes.leftshiftowmtask.commons.utils.CityWeatherForecastAsync;
 import in.jigyasacodes.leftshiftowmtask.commons.utils.Constants;
-import in.jigyasacodes.leftshiftowmtask.commons.utils.JSONWeatherParser;
+import in.jigyasacodes.leftshiftowmtask.commons.utils.JSONWeatherForecastParser;
 import in.jigyasacodes.leftshiftowmtask.commons.utils.CityWeatherForecastAsync.OnCityWeatherForecastRESTCompleteListener;
 import in.jigyasacodes.leftshiftowmtask.step2.trial.Step2GetGPSLocation.OnGPSLatLngCompleteListener;
 import in.jigyasacodes.leftshiftowmtask.step2.trial.Step2GetGPSLocation.OnGPSLocationCompleteListener;
@@ -555,14 +555,16 @@ public class Step2GPSLocationWeatherAct extends FragmentActivity implements
 
 		if (isOWMResponseSuccessful) {
 
+			pbloading.setVisibility(View.GONE);
+
 			alertDialogs
-					.showInvalidCityAD(
+					.showWeatherDataNotFoundAD(
 							this,
 							tvCityName.getText().toString(),
 							"No Data Found",
-							"NO Weather Forecast data found for the city "
+							"NO Weather Forecast data found for the city '"
 									+ tvCityName.getText().toString()
-									+ "\n\nPlease verify the locality name & TRY AGAIN..");
+									+ "'\n\nPlease verify the locality name & TRY AGAIN..");
 
 		} else {
 
@@ -578,7 +580,7 @@ public class Step2GPSLocationWeatherAct extends FragmentActivity implements
 
 		try {
 
-			weatherForecastAdapHelper = JSONWeatherParser
+			weatherForecastAdapHelper = JSONWeatherForecastParser
 					.getWeatherForecast(jsonObj);
 
 		} catch (JSONException e) {
@@ -593,12 +595,13 @@ public class Step2GPSLocationWeatherAct extends FragmentActivity implements
 		// tvWeatherResponse.setVisibility(View.VISIBLE);
 		// tvWeatherResponse.setText(jsonObj.toString(4));
 
-		DailyForecastPageAdapter adapter = new DailyForecastPageAdapter(
+		WeatherForecastAdapter adapter = new WeatherForecastAdapter(
 				OWM_WEATHER_FORECAST_CNT_cnt, getSupportFragmentManager(),
 				weatherForecastAdapHelper);
 
 		viewPager.setAdapter(adapter);
 
-	}
+		viewPager.setVisibility(View.VISIBLE);
 
+	}
 }

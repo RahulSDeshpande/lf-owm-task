@@ -14,21 +14,17 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 public class Step1CityNamesDynamicListViewAct extends Activity {
 
 	private Button btnAddCity;
 	private EditText etCityName;
-	
 
 	List<String> l;
 	// ArrayList<String> arrLCityNames;
 	private ListView lv;
 	// private String[] strArrCityNames;
 	private ArrayAdapter<String> arrAdapStr;
-	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +49,6 @@ public class Step1CityNamesDynamicListViewAct extends Activity {
 			public void onClick(View v) {
 
 				addCityToListView(etCityName.getText().toString().trim());
-
 			}
 		});
 
@@ -63,17 +58,16 @@ public class Step1CityNamesDynamicListViewAct extends Activity {
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
 
-				Toast.makeText(
-						getApplicationContext(),
-						"Position: " + position + "\nID: " + id + "\nText: "
-								+ ((TextView) view).getText().toString(),
-						Toast.LENGTH_SHORT).show();
+				/*
+				 * Toast.makeText( getApplicationContext(), "Position: " +
+				 * position + "\nID: " + id + "\nText: " + ((TextView)
+				 * view).getText().toString(), Toast.LENGTH_SHORT).show();
+				 */
 
 				Intent i = new Intent(Step1CityNamesDynamicListViewAct.this,
 						Step1CityWeatherForecast.class);
 				i.putExtra("city_name", arrAdapStr.getItem(position));
 				startActivity(i);
-
 			}
 		});
 	}

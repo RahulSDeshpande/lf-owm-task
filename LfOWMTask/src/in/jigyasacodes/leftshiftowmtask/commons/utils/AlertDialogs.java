@@ -2,7 +2,6 @@ package in.jigyasacodes.leftshiftowmtask.commons.utils;
 
 import in.jigyasacodes.leftshiftowmtask.step2.trial.Step2GPSLocationWeatherAct;
 import in.jigyasacodes.leftshiftowmtask.step2.trial.Step2GetGPSLocation;
-import android.R;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -128,12 +127,12 @@ public class AlertDialogs {
 		// alert.show();
 	}
 
-	public void showInvalidCityAD(Context ctxx, String strCityName,
+	public void showWeatherDataNotFoundAD(Context ctxx, String strCityName,
 			String strTitle, String strMessage) {
 
 		AlertDialog.Builder builder = new AlertDialog.Builder(ctxx);
 
-		Step2GPSLocationWeatherAct.setPBVisibility(View.GONE);
+		//Step2GPSLocationWeatherAct.setPBVisibility(View.GONE);
 
 		builder.setMessage(strMessage).setCancelable(false)
 				.setNeutralButton("OK.. Thanks :)", null).create().show();

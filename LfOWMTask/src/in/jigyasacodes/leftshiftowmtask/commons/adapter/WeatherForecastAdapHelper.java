@@ -1,20 +1,20 @@
 package in.jigyasacodes.leftshiftowmtask.commons.adapter;
 
-import in.jigyasacodes.leftshiftowmtask.commons.data.DayForecast;
+import in.jigyasacodes.leftshiftowmtask.commons.data.ForecastAllDays;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class WeatherForecastAdapHelper {
 
-	private List<DayForecast> daysForecast = new ArrayList<DayForecast>();
+	private List<ForecastAllDays> daysForecast = new ArrayList<ForecastAllDays>();
 
-	public void addForecast(DayForecast forecast) {
+	public void addForecast(ForecastAllDays forecast) {
+		
 		daysForecast.add(forecast);
-		System.out.println("Add forecast [" + forecast + "]");
 	}
 
-	public DayForecast getdForecast(int dayNum) {
+	public ForecastAllDays getdForecast(int dayNum) {
 		return daysForecast.get(dayNum);
 	}
 }

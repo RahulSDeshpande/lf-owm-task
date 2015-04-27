@@ -1,7 +1,8 @@
 package in.jigyasacodes.leftshiftowmtask.commons.frags;
 
 import in.jigyasacodes.leftshiftowmtask.R;
-import in.jigyasacodes.leftshiftowmtask.commons.data.DayForecast;
+import in.jigyasacodes.leftshiftowmtask.commons.data.ForecastAllDays;
+import in.jigyasacodes.leftshiftowmtask.commons.data.ForecastAllDays.ForecastSingleDay;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -15,17 +16,14 @@ public class DailyForecastFragment extends Fragment {
 			tvTempNight, tvHumidity, tvWindSpeed, tvCloudAll, tvRain3hh,
 			tvSnow3h;
 
-	private DayForecast dayForecast;
-
-	// private ImageView iconWeather;
+	private ForecastAllDays forecastAllDays;
 
 	public DailyForecastFragment() {
 	}
 
-	public void setForecast(DayForecast dayForecast) {
+	public void setForecast(ForecastAllDays dayForecast) {
 
-		this.dayForecast = dayForecast;
-
+		this.forecastAllDays = dayForecast;
 	}
 
 	@Override
@@ -36,21 +34,6 @@ public class DailyForecastFragment extends Fragment {
 				container, false);
 
 		setupUIMapping(view);
-
-		/*
-		 * TextView tempView = (TextView) view.findViewById(R.id.tempForecast);
-		 * TextView descView = (TextView)
-		 * view.findViewById(R.id.skydescForecast); tempView.setText((int)
-		 * (dayForecast.forecastTemp.min - 275.15) + "-" + (int)
-		 * (dayForecast.forecastTemp.max - 275.15));
-		 * descView.setText(dayForecast.weather.currentCondition.getDescr());
-		 */
-
-		// iconWeather = (ImageView) view.findViewById(R.id.forCondIcon);
-		// Now we retrieve the weather icon
-		// JSONIconWeatherTask task = new JSONIconWeatherTask();
-		// task.execute(new String[] { dayForecast.weather.currentCondition
-		// .getIcon() });
 
 		setWeatherForecastDataToUI();
 
@@ -74,16 +57,16 @@ public class DailyForecastFragment extends Fragment {
 
 	private void setWeatherForecastDataToUI() {
 
-		tvTempDay.append((int) (dayForecast.forecastTemp.day - 275.15) + "");
+		tvTempDay.append((int) (forecastAllDays.forecastSingleDay.day - 275.15) + "");
 
-		tvTempMin.append((int) (dayForecast.forecastTemp.min - 275.15) + "");
-		tvTempMax.append((int) (dayForecast.forecastTemp.max - 275.15) + "");
+		tvTempMin.append((int) (forecastAllDays.forecastSingleDay.min - 275.15) + "");
+		tvTempMax.append((int) (forecastAllDays.forecastSingleDay.max - 275.15) + "");
 
-		tvTempMorn.append((int) (dayForecast.forecastTemp.morning - 275.15)
+		tvTempMorn.append((int) (forecastAllDays.forecastSingleDay.morning - 275.15)
 				+ "");
-		tvTempEven.append((int) (dayForecast.forecastTemp.eve - 275.15) + "");
+		tvTempEven.append((int) (forecastAllDays.forecastSingleDay.eve - 275.15) + "");
 		tvTempNight
-				.append((int) (dayForecast.forecastTemp.night - 275.15) + "");
+				.append((int) (forecastAllDays.forecastSingleDay.night - 275.15) + "");
 
 	}
 }
