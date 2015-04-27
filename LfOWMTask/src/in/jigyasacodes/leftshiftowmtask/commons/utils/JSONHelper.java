@@ -81,6 +81,12 @@ public class JSONHelper {
 			// We retrieve the timestamp (dt)
 			df.timestamp = jDayForecast.getLong("dt");
 
+			//
+			//
+			//
+			//
+			//
+
 			// Temp is an object
 			JSONObject jTempObj = jDayForecast.getJSONObject("temp");
 
