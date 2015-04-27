@@ -128,6 +128,20 @@ public class AlertDialogs {
 		// alert.show();
 	}
 
+	public void showInvalidCityAD(Context ctxx, String strCityName,
+			String strTitle, String strMessage) {
+
+		AlertDialog.Builder builder = new AlertDialog.Builder(ctxx);
+
+		Step2GPSLocationWeatherAct.setPBVisibility(View.GONE);
+
+		builder.setMessage(strMessage).setCancelable(false)
+				.setNeutralButton("OK.. Thanks :)", null).create().show();
+
+		// AlertDialog alert = builder.create();
+		// alert.show();
+	}
+
 	public Context getContext() {
 		return ctx;
 	}

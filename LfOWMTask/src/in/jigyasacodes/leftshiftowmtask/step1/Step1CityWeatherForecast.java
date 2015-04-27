@@ -3,6 +3,8 @@ package in.jigyasacodes.leftshiftowmtask.step1;
 import in.jigyasacodes.leftshiftowmtask.R;
 import in.jigyasacodes.leftshiftowmtask.commons.adapter.DailyForecastPageAdapter;
 import in.jigyasacodes.leftshiftowmtask.commons.adapter.WeatherForecastAdapHelper;
+import in.jigyasacodes.leftshiftowmtask.commons.utils.AlertDialogs;
+import in.jigyasacodes.leftshiftowmtask.commons.utils.CheckGPSAndNet;
 import in.jigyasacodes.leftshiftowmtask.commons.utils.CityWeatherForecastAsync;
 import in.jigyasacodes.leftshiftowmtask.commons.utils.Constants;
 import in.jigyasacodes.leftshiftowmtask.commons.utils.JSONWeatherParser;
@@ -27,6 +29,9 @@ public class Step1CityWeatherForecast extends FragmentActivity implements
 
 	private TextView tvCityName;
 
+	private AlertDialogs alertDialogs;
+	private CheckGPSAndNet checkGPSAndNet;
+
 	CityWeatherForecastAsync cityWeatherForecastAsync;
 
 	static ProgressBar pbloading;
@@ -44,6 +49,11 @@ public class Step1CityWeatherForecast extends FragmentActivity implements
 		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.gps_location_weather_common_layout);
+
+		// /////////////////////////////////////////
+		alertDialogs = new AlertDialogs(this);
+		checkGPSAndNet = new CheckGPSAndNet(this);
+		// /////////////////////////////////////////
 
 		tvCityName = (TextView) findViewById(R.id.tvCityName);
 
@@ -90,12 +100,27 @@ public class Step1CityWeatherForecast extends FragmentActivity implements
 	}
 
 	@Override
-	public void onCityWeatherForecastRESTComplete(final JSONObject jsonObj)
+	public void onCityWeatherForecastRESTComplete(
+			final boolean isOWMResponseSuccessful, final JSONObject jsonObj)
 			throws JSONException {
 
-		// //////////////////////////////////
-		setupAndSetViewPagerAdapter(jsonObj);
-		// //////////////////////////////////
+		if (isOWMResponseSuccessful) {
+
+			alertDialogs
+					.showInvalidCityAD(
+							this,
+							strCityName,
+							"No Data Found",
+							"NO Weather Forecast data found for the city "
+									+ strCityName
+									+ "\n\nPlease verify the locality name & TRY AGAIN..");
+
+		} else {
+
+			// //////////////////////////////////
+			setupAndSetViewPagerAdapter(jsonObj);
+			// //////////////////////////////////
+		}
 	}
 
 	private void setupAndSetViewPagerAdapter(final JSONObject jsonObj) {

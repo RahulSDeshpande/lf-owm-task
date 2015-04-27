@@ -549,12 +549,27 @@ public class Step2GPSLocationWeatherAct extends FragmentActivity implements
 	}
 
 	@Override
-	public void onCityWeatherForecastRESTComplete(final JSONObject jsonObj)
+	public void onCityWeatherForecastRESTComplete(
+			final boolean isOWMResponseSuccessful, final JSONObject jsonObj)
 			throws JSONException {
 
-		// //////////////////////////////////
-		setupAndSetViewPagerAdapter(jsonObj);
-		// //////////////////////////////////
+		if (isOWMResponseSuccessful) {
+
+			alertDialogs
+					.showInvalidCityAD(
+							this,
+							tvCityName.getText().toString(),
+							"No Data Found",
+							"NO Weather Forecast data found for the city "
+									+ tvCityName.getText().toString()
+									+ "\n\nPlease verify the locality name & TRY AGAIN..");
+
+		} else {
+
+			// //////////////////////////////////
+			setupAndSetViewPagerAdapter(jsonObj);
+			// //////////////////////////////////
+		}
 	}
 
 	private void setupAndSetViewPagerAdapter(JSONObject jsonObj) {

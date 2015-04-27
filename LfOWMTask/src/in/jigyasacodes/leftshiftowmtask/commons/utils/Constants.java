@@ -24,4 +24,11 @@ public class Constants {
 	public static int OWM_DAYS_cnt_VALUE_16_URL = 16;
 
 	public static final String OWM_RESPONSE_MODE_mode_URL = "mode=";
+
+	public static final String OWM_RESPONSE_CODE_cod_URL = "cod";
+
+	public static final int OWM_RESPONSE_CODE_200_SUCCESS = 200;
+	public static final int OWM_RESPONSE_CODE_404_ERROR = 404;
+	public static final String OWM_RESPONSE_JSON_404_ERROR = "{\"message\":\"\",\"cod\":\"404\"}";
+
 }
