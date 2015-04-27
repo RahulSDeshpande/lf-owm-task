@@ -15,30 +15,36 @@ public class CheckGPSAndNet {
 	}
 
 	// Check GPS' STATUS - Disabled/Enabled ?
-	private Boolean getGPSStatus(LocationManager locationManager) {
+	public Boolean getGPSStatus(Context ctxx, LocationManager locationManager) {
 
 		// Not necessary --
 		// ContentResolver contentResolver = ctx.getContentResolver();
 
-		boolean boolGPSStatus = locationManager
-				.isProviderEnabled(LocationManager.GPS_PROVIDER);
+		if (locationManager == null) {
 
-		if (boolGPSStatus) {
-
-			return true;
-
-		} else {
-
-			return false;
+			locationManager = (LocationManager) ctxx
+					.getSystemService(Context.LOCATION_SERVICE);
 		}
+
+		return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+
+		/*
+		 * if (boolGPSStatus) {
+		 * 
+		 * return true;
+		 * 
+		 * } else {
+		 * 
+		 * return false; }
+		 */
 	}
 
-	private boolean isNetworkConnectionAvailable() {
+	public boolean isNetworkConnectionAvailable(Context ctxx) {
 
 		boolean haveConnectedWifi = false;
 		boolean haveConnectedMobile = false;
 
-		ConnectivityManager cm = (ConnectivityManager) getContext()
+		ConnectivityManager cm = (ConnectivityManager) ctxx
 				.getSystemService(Context.CONNECTIVITY_SERVICE);
 
 		NetworkInfo[] netInfo = cm.getAllNetworkInfo();
