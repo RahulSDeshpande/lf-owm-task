@@ -31,4 +31,9 @@ public class Constants {
 	public static final int OWM_RESPONSE_CODE_404_ERROR = 404;
 	public static final String OWM_RESPONSE_JSON_404_ERROR = "{\"message\":\"\",\"cod\":\"404\"}";
 
+	// //////////////////////////////////////////////////////
+	public static final String TEMP_DEGREE_CELCIUS = "°C";
+	public static final String TEMP_DEGREE_FAHRENHEIT = "°F";
+	// //////////////////////////////////////////////////////
+
 }

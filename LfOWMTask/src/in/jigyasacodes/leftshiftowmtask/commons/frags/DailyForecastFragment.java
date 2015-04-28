@@ -3,6 +3,7 @@ package in.jigyasacodes.leftshiftowmtask.commons.frags;
 import in.jigyasacodes.leftshiftowmtask.R;
 import in.jigyasacodes.leftshiftowmtask.commons.data.ForecastAllDays;
 import in.jigyasacodes.leftshiftowmtask.commons.data.ForecastAllDays.ForecastSingleDay;
+import in.jigyasacodes.leftshiftowmtask.commons.utils.Constants;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -57,16 +58,23 @@ public class DailyForecastFragment extends Fragment {
 
 	private void setWeatherForecastDataToUI() {
 
-		tvTempDay.append((int) (forecastAllDays.forecastSingleDay.day - 275.15) + "");
+		tvTempDay.append((int) (forecastAllDays.forecastSingleDay.day - 275.15)
+				+ Constants.TEMP_DEGREE_CELCIUS);
 
-		tvTempMin.append((int) (forecastAllDays.forecastSingleDay.min - 275.15) + "");
-		tvTempMax.append((int) (forecastAllDays.forecastSingleDay.max - 275.15) + "");
+		tvTempMin.append((int) (forecastAllDays.forecastSingleDay.min - 275.15)
+				+ Constants.TEMP_DEGREE_CELCIUS);
+		tvTempMax.append((int) (forecastAllDays.forecastSingleDay.max - 275.15)
+				+ Constants.TEMP_DEGREE_CELCIUS);
 
-		tvTempMorn.append((int) (forecastAllDays.forecastSingleDay.morning - 275.15)
-				+ "");
-		tvTempEven.append((int) (forecastAllDays.forecastSingleDay.eve - 275.15) + "");
+		tvTempMorn
+				.append((int) (forecastAllDays.forecastSingleDay.morning - 275.15)
+						+ Constants.TEMP_DEGREE_CELCIUS);
+		tvTempEven
+				.append((int) (forecastAllDays.forecastSingleDay.eve - 275.15)
+						+ Constants.TEMP_DEGREE_CELCIUS);
 		tvTempNight
-				.append((int) (forecastAllDays.forecastSingleDay.night - 275.15) + "");
+				.append((int) (forecastAllDays.forecastSingleDay.night - 275.15)
+						+ Constants.TEMP_DEGREE_CELCIUS);
 
 	}
 }

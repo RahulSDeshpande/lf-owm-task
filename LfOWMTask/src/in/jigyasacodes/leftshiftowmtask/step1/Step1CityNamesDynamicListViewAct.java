@@ -1,6 +1,9 @@
 package in.jigyasacodes.leftshiftowmtask.step1;
 
 import in.jigyasacodes.leftshiftowmtask.R;
+import in.jigyasacodes.leftshiftowmtask.commons.utils.AlertDialogs;
+import in.jigyasacodes.leftshiftowmtask.commons.utils.CheckGPSAndNet;
+import in.jigyasacodes.leftshiftowmtask.step2.trial.Step2GPSLocationWeatherAct;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +23,9 @@ public class Step1CityNamesDynamicListViewAct extends Activity {
 	private Button btnAddCity;
 	private EditText etCityName;
 
+	private AlertDialogs alertDialogs;
+	private CheckGPSAndNet checkGPSAndNet;
+
 	List<String> l;
 	// ArrayList<String> arrLCityNames;
 	private ListView lv;
@@ -32,6 +38,11 @@ public class Step1CityNamesDynamicListViewAct extends Activity {
 		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.dynamic_listview);
+
+		// /////////////////////////////////////////
+		alertDialogs = new AlertDialogs(this);
+		checkGPSAndNet = new CheckGPSAndNet(this);
+		// /////////////////////////////////////////
 
 		l = new ArrayList<String>();
 		// arrLCityNames = new ArrayList<String>();
@@ -64,10 +75,23 @@ public class Step1CityNamesDynamicListViewAct extends Activity {
 				 * view).getText().toString(), Toast.LENGTH_SHORT).show();
 				 */
 
-				Intent i = new Intent(Step1CityNamesDynamicListViewAct.this,
-						Step1CityWeatherForecast.class);
-				i.putExtra("city_name", arrAdapStr.getItem(position));
-				startActivity(i);
+				if (checkGPSAndNet
+						.isNetworkConnectionAvailable(Step1CityNamesDynamicListViewAct.this)) {
+
+					Intent i = new Intent(
+							Step1CityNamesDynamicListViewAct.this,
+							Step1CityWeatherForecast.class);
+					i.putExtra("city_name", arrAdapStr.getItem(position));
+					startActivity(i);
+
+				} else {
+
+					alertDialogs
+							.showInternetDisabledAD(
+									Step1CityNamesDynamicListViewAct.this,
+									"Internet Connection",
+									"Please ENABLE your device's Internet connection & TRY AGAIN..");
+				}
 			}
 		});
 	}

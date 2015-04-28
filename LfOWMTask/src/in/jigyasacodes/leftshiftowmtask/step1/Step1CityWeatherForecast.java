@@ -104,9 +104,9 @@ public class Step1CityWeatherForecast extends FragmentActivity implements
 			final boolean isOWMResponseSuccessful, final JSONObject jsonObj)
 			throws JSONException {
 
-		if (isOWMResponseSuccessful) {
+		pbloading.setVisibility(View.GONE);
 
-			pbloading.setVisibility(View.GONE);
+		if (isOWMResponseSuccessful) {
 
 			alertDialogs
 					.showWeatherDataNotFoundAD(
@@ -149,7 +149,7 @@ public class Step1CityWeatherForecast extends FragmentActivity implements
 		pbloading.setVisibility(View.GONE);
 
 		viewPager.setAdapter(adapter);
-		
+
 		viewPager.setVisibility(View.VISIBLE);
 	}
 }

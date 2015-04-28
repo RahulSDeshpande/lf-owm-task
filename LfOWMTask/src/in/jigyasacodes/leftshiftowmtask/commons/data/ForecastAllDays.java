@@ -24,3 +24,5 @@ public class ForecastAllDays {
 		return sdf.format(new Date(timestamp));
 	}
 }
+
+

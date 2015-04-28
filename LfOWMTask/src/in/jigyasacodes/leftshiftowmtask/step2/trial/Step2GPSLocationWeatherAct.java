@@ -45,7 +45,7 @@ public class Step2GPSLocationWeatherAct extends FragmentActivity implements
 		OnCityWeatherForecastRESTCompleteListener {
 
 	TextView tvCityName, tvWeatherResponse;
-	Button btnGetGPSLocation;
+	static Button btnGetGPSLocation;
 
 	private AlertDialogs alertDialogs;
 	private CheckGPSAndNet checkGPSAndNet;
@@ -87,6 +87,7 @@ public class Step2GPSLocationWeatherAct extends FragmentActivity implements
 		tvWeatherResponse = (TextView) findViewById(R.id.tvWeatherResponse);
 
 		btnGetGPSLocation = (Button) findViewById(R.id.btnGetGPSLocation);
+		btnGetGPSLocation.setVisibility(View.VISIBLE);
 
 		pbloading = (ProgressBar) findViewById(R.id.pbLoading);
 
@@ -150,6 +151,7 @@ public class Step2GPSLocationWeatherAct extends FragmentActivity implements
 	public static void setPBVisibility(final int VISIBILITY) {
 
 		pbloading.setVisibility(VISIBILITY);
+		btnGetGPSLocation.setEnabled(false);
 	}
 
 	public void requestGPSStop() {
@@ -553,9 +555,10 @@ public class Step2GPSLocationWeatherAct extends FragmentActivity implements
 			final boolean isOWMResponseSuccessful, final JSONObject jsonObj)
 			throws JSONException {
 
-		if (isOWMResponseSuccessful) {
+		pbloading.setVisibility(View.GONE);
+		btnGetGPSLocation.setEnabled(true);
 
-			pbloading.setVisibility(View.GONE);
+		if (isOWMResponseSuccessful) {
 
 			alertDialogs
 					.showWeatherDataNotFoundAD(

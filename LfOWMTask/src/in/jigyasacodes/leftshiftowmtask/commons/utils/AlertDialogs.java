@@ -11,6 +11,10 @@ import android.view.View;
 
 public class AlertDialogs {
 
+	// ////////////////////// * ///////////////////////
+	private static int intWhichClassHasCalledThisClass;
+	// ////////////////////////////////////////////////
+
 	private Context ctx;
 
 	public AlertDialogs(Context ctx) {
@@ -23,7 +27,7 @@ public class AlertDialogs {
 
 		AlertDialog.Builder builder = new AlertDialog.Builder(ctxx);
 
-		Step2GPSLocationWeatherAct.setPBVisibility(View.GONE);
+		////Step2GPSLocationWeatherAct.setPBVisibility(View.GONE);
 
 		builder.setMessage(strMessage)
 				.setCancelable(false)
@@ -95,7 +99,7 @@ public class AlertDialogs {
 
 		AlertDialog.Builder builder = new AlertDialog.Builder(ctxx);
 
-		Step2GPSLocationWeatherAct.setPBVisibility(View.GONE);
+		////Step2GPSLocationWeatherAct.setPBVisibility(View.GONE);
 
 		builder.setMessage(strMessage)
 				.setCancelable(false)
@@ -132,10 +136,23 @@ public class AlertDialogs {
 
 		AlertDialog.Builder builder = new AlertDialog.Builder(ctxx);
 
-		//Step2GPSLocationWeatherAct.setPBVisibility(View.GONE);
+		// Step2GPSLocationWeatherAct.setPBVisibility(View.GONE);
 
-		builder.setMessage(strMessage).setCancelable(false)
-				.setNeutralButton("OK.. Thanks :)", null).create().show();
+		builder.setMessage(strMessage)
+				.setCancelable(false)
+				.setNeutralButton("OK.. Thanks :)",
+						new DialogInterface.OnClickListener() {
+
+							@Override
+							public void onClick(DialogInterface dialog, int id) {
+
+								Intent myIntent = new Intent(
+										Settings.ACTION_DATA_ROAMING_SETTINGS);
+								ctx.startActivity(myIntent);
+
+								dialog.cancel();
+							}
+						}).create().show();
 
 		// AlertDialog alert = builder.create();
 		// alert.show();
