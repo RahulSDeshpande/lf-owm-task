@@ -41,21 +41,39 @@ public class CityWeatherForecastAsync extends
 	}
 
 	@Override
-	protected void onPostExecute(JSONObject jsonResp) {
+	protected void onPostExecute(JSONObject jsonObjectResponse) {
 
 		// super.onPostExecute(jsonResp);
 
 		// //showJSONRespose(jsonResp);
-
 		try {
+			if (isOWMResponseSuccessful(jsonObjectResponse)) {
 
-			onCityWeatherForecastRESTCompleteListener
-					.onCityWeatherForecastRESTComplete(jsonResp);
+				onCityWeatherForecastRESTCompleteListener
+				.onCityWeatherForecastRESTComplete(false,jsonObjectResponse);
+				
+			} else {
 
+				onCityWeatherForecastRESTCompleteListener
+						.onCityWeatherForecastRESTComplete(true,jsonObjectResponse);
+
+			}
 		} catch (JSONException e) {
 
 			e.printStackTrace();
 		}
+
+	}
+
+	private boolean isOWMResponseSuccessful(final JSONObject jsonObjectResponse)
+			throws JSONException {
+
+		if (jsonObjectResponse.getInt(Constants.OWM_RESPONSE_CODE_cod_URL) == Constants.OWM_RESPONSE_CODE_404_ERROR) {
+
+			return false;
+		}
+
+		return true;
 	}
 
 	private JSONObject get(String url) {
@@ -86,7 +104,6 @@ public class CityWeatherForecastAsync extends
 		} catch (IOException e) {
 
 			Log.e(getClass().getSimpleName(), e.toString());
-
 		}
 
 		// Toast.makeText(this, strResp, Toast.LENGTH_LONG).show();
@@ -109,7 +126,9 @@ public class CityWeatherForecastAsync extends
 
 	public interface OnCityWeatherForecastRESTCompleteListener {
 
-		public void onCityWeatherForecastRESTComplete(final JSONObject jsonObj)
+		public void onCityWeatherForecastRESTComplete(
+				final boolean isOWMResponseSuccessful, final JSONObject jsonObj)
 				throws JSONException;
+
 	}
 }

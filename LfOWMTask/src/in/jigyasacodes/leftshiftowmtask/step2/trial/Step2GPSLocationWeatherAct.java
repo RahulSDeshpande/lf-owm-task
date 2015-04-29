@@ -1,11 +1,13 @@
 package in.jigyasacodes.leftshiftowmtask.step2.trial;
 
 import in.jigyasacodes.leftshiftowmtask.R;
-import in.jigyasacodes.leftshiftowmtask.commons.adapter.DailyForecastPageAdapter;
+import in.jigyasacodes.leftshiftowmtask.commons.adapter.WeatherForecastAdapter;
 import in.jigyasacodes.leftshiftowmtask.commons.adapter.WeatherForecastAdapHelper;
+import in.jigyasacodes.leftshiftowmtask.commons.utils.AlertDialogs;
+import in.jigyasacodes.leftshiftowmtask.commons.utils.CheckGPSAndNet;
 import in.jigyasacodes.leftshiftowmtask.commons.utils.CityWeatherForecastAsync;
 import in.jigyasacodes.leftshiftowmtask.commons.utils.Constants;
-import in.jigyasacodes.leftshiftowmtask.commons.utils.JSONWeatherParser;
+import in.jigyasacodes.leftshiftowmtask.commons.utils.JSONWeatherForecastParser;
 import in.jigyasacodes.leftshiftowmtask.commons.utils.CityWeatherForecastAsync.OnCityWeatherForecastRESTCompleteListener;
 import in.jigyasacodes.leftshiftowmtask.step2.trial.Step2GetGPSLocation.OnGPSLatLngCompleteListener;
 import in.jigyasacodes.leftshiftowmtask.step2.trial.Step2GetGPSLocation.OnGPSLocationCompleteListener;
@@ -43,7 +45,10 @@ public class Step2GPSLocationWeatherAct extends FragmentActivity implements
 		OnCityWeatherForecastRESTCompleteListener {
 
 	TextView tvCityName, tvWeatherResponse;
-	Button btnGetGPSLocation;
+	static Button btnGetGPSLocation;
+
+	private AlertDialogs alertDialogs;
+	private CheckGPSAndNet checkGPSAndNet;
 
 	static ProgressBar pbloading;
 
@@ -73,10 +78,16 @@ public class Step2GPSLocationWeatherAct extends FragmentActivity implements
 		 * }
 		 */
 
+		// /////////////////////////////////////////
+		alertDialogs = new AlertDialogs(this);
+		checkGPSAndNet = new CheckGPSAndNet(this);
+		// /////////////////////////////////////////
+
 		tvCityName = (TextView) findViewById(R.id.tvCityName);
 		tvWeatherResponse = (TextView) findViewById(R.id.tvWeatherResponse);
 
 		btnGetGPSLocation = (Button) findViewById(R.id.btnGetGPSLocation);
+		btnGetGPSLocation.setVisibility(View.VISIBLE);
 
 		pbloading = (ProgressBar) findViewById(R.id.pbLoading);
 
@@ -92,19 +103,47 @@ public class Step2GPSLocationWeatherAct extends FragmentActivity implements
 				Log.e("btnGetGPSLocation.onClick", "Started.."
 						+ "--------------------------------");
 
-				getGPSLocation = new Step2GetGPSLocation(
-						Step2GPSLocationWeatherAct.this,
-						Step2GPSLocationWeatherAct.this);
+				if (checkGPSAndNet.getGPSStatus(
+						Step2GPSLocationWeatherAct.this, null)) {
 
-				// ///////////////////////////////////////////////////////////
-				getGPSLocation.setupGPSVarsAndCall(
-						Step2GPSLocationWeatherAct.this, getBaseContext());
-				// ///////////////////////////////////////////////////////////
+					if (checkGPSAndNet
+							.isNetworkConnectionAvailable(Step2GPSLocationWeatherAct.this)) {
 
-				/*
-				 * cityWeatherForecastAsync = new CityWeatherForecastAsync(
-				 * GPSLocationWeatherAct.this); fetchWeatherForecast("Pune");
-				 */
+						getGPSLocation = new Step2GetGPSLocation(
+								Step2GPSLocationWeatherAct.this,
+								Step2GPSLocationWeatherAct.this);
+
+						// ///////////////////////////////////////////////////////////
+						getGPSLocation
+								.setupGPSVarsAndCall(Step2GPSLocationWeatherAct.this);// ,
+						// getBaseContext());
+						// ///////////////////////////////////////////////////////////
+
+						/*
+						 * cityWeatherForecastAsync = new
+						 * CityWeatherForecastAsync(
+						 * GPSLocationWeatherAct.this);
+						 * fetchWeatherForecast("Pune");
+						 */
+
+					} else {
+
+						alertDialogs
+								.showInternetDisabledAD(
+										Step2GPSLocationWeatherAct.this,
+										"Internet Connection",
+										"Please ENABLE your device's Internet connection & TRY AGAIN..");
+
+					}
+				} else {
+
+					alertDialogs
+							.showGPSDisabledAD(Step2GPSLocationWeatherAct.this,
+									"GPS Status",
+									"GPS is disabled on your device !!\n\nPlease ENABLE it & TRY AGAIN");
+
+				}
+
 			}
 		});
 	}
@@ -112,6 +151,7 @@ public class Step2GPSLocationWeatherAct extends FragmentActivity implements
 	public static void setPBVisibility(final int VISIBILITY) {
 
 		pbloading.setVisibility(VISIBILITY);
+		btnGetGPSLocation.setEnabled(false);
 	}
 
 	public void requestGPSStop() {
@@ -126,9 +166,12 @@ public class Step2GPSLocationWeatherAct extends FragmentActivity implements
 
 		if (location == null) {
 
-			showGPSRetryAlertDialog(
-					"GPS Response",
-					"GPS could not fetch your current location co-ordinates - Lat-Lnt !!\n\nDo you want to RETRY ??");
+			alertDialogs
+					.showGPSRetryAD(
+							this,
+							getGPSLocation,
+							"GPS Response",
+							"GPS could not fetch your current location co-ordinates - Lat-Lnt !!\n\nDo you want to RETRY ??");
 
 		} else {
 
@@ -136,17 +179,47 @@ public class Step2GPSLocationWeatherAct extends FragmentActivity implements
 					+ location.getLongitude()
 					+ "--------------------------------");
 
-			if (isNetworkConnectionAvailable())
+			checkNetConnection(location);
 
-			{
-				// /////////////////////////////////////////
-				new ReverseGeocodeAsync().execute(location);
-				// /////////////////////////////////////////
+			if (checkGPSAndNet.isNetworkConnectionAvailable(this)) {
+
+				// ///////////////////////////////////////// new
+				new ReverseGeocodeAsync().execute(location); //
+				// ///////////////////////////////////////
 
 			} else {
 
+				Toast.makeText(this,
+						"Internet Disabled.. Please enable it first..",
+						Toast.LENGTH_LONG).show();
+
+				alertDialogs
+						.showInternetDisabledAD(this, "Internet Connection",
+								"Please ENABLE your device's Internet connection & TRY AGAIN..");
 			}
 		}
+	}
+
+	public boolean checkNetConnection(Location location) {
+
+		if (checkGPSAndNet.isNetworkConnectionAvailable(this)) {
+
+			return true;
+			// /////////////////////////////////////////
+			// new ReverseGeocodeAsync().execute(location);
+			// /////////////////////////////////////////
+
+		} else {
+
+			Toast.makeText(this,
+					"Internet Disabled.. Please enable it first..",
+					Toast.LENGTH_LONG).show();
+
+			alertDialogs
+					.showInternetDisabledAD(this, "Internet Connection",
+							"Please ENABLE your device's Internet connection & TRY AGAIN..");
+		}
+		return false;
 	}
 
 	private boolean isNetworkConnectionAvailable() {
@@ -190,9 +263,9 @@ public class Step2GPSLocationWeatherAct extends FragmentActivity implements
 							public void onClick(DialogInterface dialog, int id) {
 
 								// ////////////////////////////////
-								getGPSLocation.setupGPSVarsAndCall(
-										Step2GPSLocationWeatherAct.this,
-										getBaseContext());
+								getGPSLocation
+										.setupGPSVarsAndCall(Step2GPSLocationWeatherAct.this);
+								// getBaseContext());
 								// ////////////////////////////////
 								dialog.cancel();
 							}
@@ -478,12 +551,30 @@ public class Step2GPSLocationWeatherAct extends FragmentActivity implements
 	}
 
 	@Override
-	public void onCityWeatherForecastRESTComplete(final JSONObject jsonObj)
+	public void onCityWeatherForecastRESTComplete(
+			final boolean isOWMResponseSuccessful, final JSONObject jsonObj)
 			throws JSONException {
 
-		// //////////////////////////////////
-		setupAndSetViewPagerAdapter(jsonObj);
-		// //////////////////////////////////
+		pbloading.setVisibility(View.GONE);
+		btnGetGPSLocation.setEnabled(true);
+
+		if (isOWMResponseSuccessful) {
+
+			alertDialogs
+					.showWeatherDataNotFoundAD(
+							this,
+							tvCityName.getText().toString(),
+							"No Data Found",
+							"NO Weather Forecast data found for the city '"
+									+ tvCityName.getText().toString()
+									+ "'\n\nPlease verify the locality name & TRY AGAIN..");
+
+		} else {
+
+			// //////////////////////////////////
+			setupAndSetViewPagerAdapter(jsonObj);
+			// //////////////////////////////////
+		}
 	}
 
 	private void setupAndSetViewPagerAdapter(JSONObject jsonObj) {
@@ -492,7 +583,7 @@ public class Step2GPSLocationWeatherAct extends FragmentActivity implements
 
 		try {
 
-			weatherForecastAdapHelper = JSONWeatherParser
+			weatherForecastAdapHelper = JSONWeatherForecastParser
 					.getWeatherForecast(jsonObj);
 
 		} catch (JSONException e) {
@@ -507,12 +598,13 @@ public class Step2GPSLocationWeatherAct extends FragmentActivity implements
 		// tvWeatherResponse.setVisibility(View.VISIBLE);
 		// tvWeatherResponse.setText(jsonObj.toString(4));
 
-		DailyForecastPageAdapter adapter = new DailyForecastPageAdapter(
+		WeatherForecastAdapter adapter = new WeatherForecastAdapter(
 				OWM_WEATHER_FORECAST_CNT_cnt, getSupportFragmentManager(),
 				weatherForecastAdapHelper);
 
 		viewPager.setAdapter(adapter);
 
-	}
+		viewPager.setVisibility(View.VISIBLE);
 
+	}
 }

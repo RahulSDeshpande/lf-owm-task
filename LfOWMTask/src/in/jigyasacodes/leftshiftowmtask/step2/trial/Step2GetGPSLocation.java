@@ -1,5 +1,8 @@
 package in.jigyasacodes.leftshiftowmtask.step2.trial;
 
+import in.jigyasacodes.leftshiftowmtask.commons.utils.AlertDialogs;
+import in.jigyasacodes.leftshiftowmtask.commons.utils.CheckGPSAndNet;
+
 import java.util.List;
 
 import android.app.AlertDialog;
@@ -18,10 +21,13 @@ import android.widget.Toast;
 
 public class Step2GetGPSLocation implements LocationListener {
 
-	private Context ctx = null, baseCtx = null;
+	private Context ctx = null;// , baseCtx = null;
 
 	private LocationManager locationManager = null;
 	private LocationListener locationListener = null;
+
+	private AlertDialogs alertDialogs;
+	private CheckGPSAndNet checkGPSAndNet;
 
 	private final long GPS_SEARCH_MIN_TIME = 100000;
 	private final float GPS_SEARCH_MIN_DISTANCE = 0f;
@@ -34,9 +40,15 @@ public class Step2GetGPSLocation implements LocationListener {
 
 		this.onGPSLatLngCompleteListener = this1;
 		this.onGPSLocationCompleteListener = this2;
+
+		// /////////////////////////////////////////
+		alertDialogs = new AlertDialogs(ctx);
+		checkGPSAndNet = new CheckGPSAndNet(ctx);
+		// /////////////////////////////////////////
+
 	}
 
-	public void setupGPSVarsAndCall(Context ctx, Context baseCtx) {
+	public void setupGPSVarsAndCall(Context ctx) {// , Context baseCtx) {
 
 		this.ctx = ctx;
 		locationManager = (LocationManager) ctx
@@ -44,7 +56,7 @@ public class Step2GetGPSLocation implements LocationListener {
 		// //Toast.makeText(ctx, locationManager.toString(),
 		// Toast.LENGTH_LONG).show();
 
-		if (getGPSStatus()) {
+		if (checkGPSAndNet.getGPSStatus(ctx, locationManager)) {
 
 			Toast.makeText(ctx,
 					"Please move your device to let GPS locate your device..",
@@ -52,8 +64,8 @@ public class Step2GetGPSLocation implements LocationListener {
 
 			// locationListener = new MyLocationListener();
 
-			locationListener = new Step2GetGPSLocation(onGPSLatLngCompleteListener,
-					onGPSLocationCompleteListener);
+			locationListener = new Step2GetGPSLocation(
+					onGPSLatLngCompleteListener, onGPSLocationCompleteListener);
 			locationManager.requestLocationUpdates(
 					LocationManager.GPS_PROVIDER, GPS_SEARCH_MIN_TIME,
 					GPS_SEARCH_MIN_DISTANCE, locationListener);
@@ -62,8 +74,9 @@ public class Step2GetGPSLocation implements LocationListener {
 
 		} else {
 
-			showGPSDisabledAlertDialog("GPS Status",
-					"GPS is disabled on your device !!");
+			alertDialogs
+					.showGPSDisabledAD(ctx, "GPS Status",
+							"GPS is disabled on your device !! \n\nPlease ENABLE it & TRY AGAIN");
 		}
 
 	}
@@ -72,11 +85,14 @@ public class Step2GetGPSLocation implements LocationListener {
 
 		AlertDialog.Builder builder = new AlertDialog.Builder(ctx);
 
+		Step2GPSLocationWeatherAct.setPBVisibility(View.GONE);
+
 		builder.setMessage(strMessage)
 				.setCancelable(false)
 				.setPositiveButton("Turn ON",
 						new DialogInterface.OnClickListener() {
 
+							@Override
 							public void onClick(DialogInterface dialog, int id) {
 
 								Intent myIntent = new Intent(
@@ -89,11 +105,10 @@ public class Step2GetGPSLocation implements LocationListener {
 				.setNegativeButton("Leave",
 						new DialogInterface.OnClickListener() {
 
+							@Override
 							public void onClick(DialogInterface dialog, int id) {
 
 								dialog.cancel();
-								Step2GPSLocationWeatherAct
-										.setPBVisibility(View.GONE);
 
 							}
 						}).create().show();

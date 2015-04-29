@@ -20,7 +20,8 @@
         android:id="@+id/btnGetGPSLocation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Get Current Location by GPS" />
+        android:text="Get Current Location by GPS"
+        android:visibility="gone" />
 
     <ProgressBar
         android:id="@+id/pbLoading"
@@ -48,7 +49,8 @@
         android:id="@+id/viewPager"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="6" >
+        android:layout_weight="6"
+        android:visibility="gone" >
 
         <android.support.v4.view.PagerTitleStrip
             android:id="@+id/viewPagerTitleStrip"
