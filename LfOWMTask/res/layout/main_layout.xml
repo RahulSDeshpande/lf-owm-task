@@ -29,8 +29,9 @@
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:autoLink="all"
-            android:hint="@string/about_me"
-            android:linksClickable="true" />
+            android:textColor="@android:color/darker_gray"
+            android:linksClickable="true"
+            android:text="@string/about_me" />
     </LinearLayout>
 
 </ScrollView>
